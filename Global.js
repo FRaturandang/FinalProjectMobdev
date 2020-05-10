@@ -19,14 +19,14 @@ class Globaldata extends Component  {
         sembuh: globe.recovered.value,
         meninggal: globe.deaths.value})
       )
-      .catch(() => alert('Check your internet connection'))
+      .catch(error => alert(error))
     }
       
     render() {
       return (
         <View style={style.container}>
             <View style={style.box1}>
-                <Text style={{fontSize: 20}}>Positif</Text>
+                <Text style={{fontSize: 18}}>Terkonfirmasi</Text>
                 <Text style={{ fontWeight: 'bold', fontSize: 20}}>{this.state.positif}</Text>
             </View>
             <View style={style.box2}>
@@ -64,11 +64,13 @@ const style = StyleSheet.create({
         backgroundColor: 'springgreen',
         alignItems: 'center',
         justifyContent: 'center',
-        flexDirection: 'column'
+        flexDirection: 'column',
+        paddingHorizontal: 5
     },
     box3: {
         height: 100,
         width: 120,
+        paddingHorizontal: 5,
         borderRadius: 10,
         backgroundColor: 'tomato',
         alignItems: 'center',

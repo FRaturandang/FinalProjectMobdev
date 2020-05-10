@@ -1,23 +1,45 @@
-import React from 'react'
+import React, {Component} from 'react'
 import { StyleSheet, View, Text } from 'react-native'
 
-const Globaldata = ( {data} ) => {
-    return (
+class Globaldata extends Component  {
+    constructor(){
+      super();
+      this.state ={
+        positif: null,
+        sembuh: null,
+        meninggal: null
+      }
+    }  
+    
+     async componentDidMount(){
+      fetch('https://covid-19.mathdro.id/api')
+      .then(resp => resp.json())
+      .then(globe => this.setState({
+        positif: globe.confirmed.value,
+        sembuh: globe.recovered.value,
+        meninggal: globe.deaths.value})
+      )
+      .catch(() => alert('Check your internet connection'))
+    }
+      
+    render() {
+      return (
         <View style={style.container}>
             <View style={style.box1}>
                 <Text style={{fontSize: 20}}>Positif</Text>
-                <Text style={{ fontWeight: 'bold', fontSize: 20}}>{data.positif}</Text>
+                <Text style={{ fontWeight: 'bold', fontSize: 20}}>{this.state.positif}</Text>
             </View>
             <View style={style.box2}>
                 <Text style={{fontSize: 20}}>Sembuh</Text>
-                <Text style={{ fontWeight: 'bold', fontSize: 20}}>{data.sembuh}</Text>
+                <Text style={{ fontWeight: 'bold', fontSize: 20}}>{this.state.sembuh}</Text>
             </View>
             <View style={style.box3}>
                 <Text style={{fontSize: 20}}>Meninggal</Text>
-                <Text style={{ fontWeight: 'bold', fontSize: 20}}>{data.meninggal}</Text>
+                <Text style={{ fontWeight: 'bold', fontSize: 20}}>{this.state.meninggal}</Text>
             </View>
         </View>
-    )
+      )
+    }
 }
 
 const style = StyleSheet.create({

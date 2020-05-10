@@ -30,12 +30,10 @@ componentDidMount = () =>{
 }
 
 getDataApi = async () => {
+  this.setState({refreshing: true})
   const response = await fetch('https://indonesia-covid-19.mathdro.id/api/provinsi')
   const DataIndo = await response.json()
-//   const { data } = await DataIndo
-  this.setState({
-      DataIndo: DataIndo.data
-  })
+  this.setState({DataIndo: DataIndo.data, refreshing: false})
 }
 
 render(){

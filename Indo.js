@@ -32,7 +32,6 @@ class IndoCases extends Component  {
     }
     
     render() {
-        const [[dataProvinsi]] = this.setState 
     return (
       <View>
         <FlatList 
